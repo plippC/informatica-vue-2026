@@ -10,13 +10,20 @@ const name = 'Patricia'
 const bio = 'Senior Software Engineer at Cornelsen'
 
 // TODO Day 1A: b) replace with your own skills
-const skills = ['HTML', 'Typescript', 'Java']
+const skills = ref(['HTML', 'Typescript', 'Java'])
 
 const newSkill = ref('')
 
 function addSkill() {
-  // TODO Day 1A: f) push newSkill.value into skills, then clear the input
   console.log('addSkill:', newSkill.value)
+
+  const skill = newSkill.value?.trim()
+  if (skill && !skills.value.includes(skill)) {
+    // TODO Day 1A: f) push newSkill.value into skills, then clear the input
+    skills.value.push(skill)
+
+    newSkill.value = ''
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -41,6 +48,7 @@ function addSkill() {
 
 function removeSkill(index: number) {
   // TODO Bonus: remove the skill at the given index from the skills array
+  skills.value.splice(index, 1)
 }
 </script>
 
@@ -56,19 +64,19 @@ function removeSkill(index: number) {
     <ul class="skills">
       <!-- TODO Day 1A: d) Render the skills list using "li" + `v-for`
            Bonus: text-input should also add skill on <ENTER> -->
-      <!-- Bonus: <button @click="removeSkill(skills.indexOf(skill))">×</button> -->
 
-      <!-- TODO Day 1A: just for showing first output: Remove when implementation of v-for is done -->
-      {{ skills }}
+      <li v-for="skill in skills" :key="skill">{{ skill }}
+        <button @click="removeSkill(skills.indexOf(skill))">×</button>
+      </li>
     </ul>
 
     <!-- TODO Day 1A: e) wire up v-model and the addSkill button
          Bonus: text-input should also add skill on <ENTER> -->
     <div class="add-skill">
-      <input v-model="newSkill" placeholder="Add a skill…" />
-      <button>Add</button>
+      <input v-model="newSkill" placeholder="Add a skill…" @keyup.enter="addSkill" />
+      <button @click="() => addSkill()" :disabled="newSkill.trim().length === 0 || skills.includes(newSkill.trim())">
+        Add
+      </button>
     </div>
-    <!-- TODO Day 1A: just for debugging: Remove when implementation is ready -->
-    <div class="placeholder">{{ newSkill }}</div>
   </section>
 </template>

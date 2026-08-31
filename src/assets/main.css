@@ -107,6 +107,13 @@ button:hover {
   background: var(--color-border);
 }
 
+button:disabled,
+button:disabled:hover {
+  cursor: default;
+  opacity: 0.5;
+  background: var(--color-bg-secondary);
+}
+
 input,
 textarea {
   font-family: inherit;
