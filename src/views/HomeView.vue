@@ -14,16 +14,21 @@ const skills = ref(['HTML', 'Typescript', 'Java'])
 
 const newSkill = ref('')
 
+function skillExists(skillName: string) {
+  const normalizedSkill = skillName.trim().toLowerCase()
+
+  return skills.value.some(existingSkill => existingSkill.toLowerCase() === normalizedSkill)
+}
+
 function addSkill() {
-  console.log('addSkill:', newSkill.value)
+  const skill = newSkill.value.trim()
 
-  const skill = newSkill.value?.trim()
-  if (skill && !skills.value.includes(skill)) {
-    // TODO Day 1A: f) push newSkill.value into skills, then clear the input
-    skills.value.push(skill)
-
-    newSkill.value = ''
+  if (!skill || skillExists(skill)) {
+    return
   }
+
+  skills.value.push(skill)
+  newSkill.value = ''
 }
 
 // ---------------------------------------------------------------------------
@@ -83,7 +88,7 @@ function removeSkill(index: number) {
          Bonus: text-input should also add skill on <ENTER> -->
     <div class="add-skill">
       <input v-model="newSkill" placeholder="Add a skill…" @keyup.enter="addSkill" />
-      <button @click="() => addSkill()" :disabled="newSkill.trim().length === 0 || skills.includes(newSkill.trim())">
+      <button @click="() => addSkill()" :disabled="newSkill.trim().length === 0 || skillExists(newSkill)">
         Add
       </button>
     </div>
