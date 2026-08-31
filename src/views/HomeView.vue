@@ -32,7 +32,7 @@ function addSkill() {
 
 // TODO Day 1B: add a computed property `skillCount` that returns the number
 // of skills — hint: skills.value.length
-// const skillCount = computed(() => ...)
+const skillCount = computed(() => skills.value.length)
 
 // TODO Day 1B: use onMounted to load saved skills from localStorage
 // (key: 'portfolio-skills') — hint: JSON.parse() to convert back to an array
@@ -60,7 +60,7 @@ function removeSkill(index: number) {
 
     <!-- TODO Day 1B: replace the hardcoded "Skills" heading with
          "Skills ({{ skillCount }})" once you've added the computed -->
-    <h3>Skills</h3>
+    <h3>Skills ({{ skillCount }})</h3>
     <ul class="skills">
       <!-- TODO Day 1A: d) Render the skills list using "li" + `v-for`
            Bonus: text-input should also add skill on <ENTER> -->
