@@ -29,18 +29,27 @@ function addSkill() {
 // ---------------------------------------------------------------------------
 // Day 1 Part B — computed, watch, onMounted
 // ---------------------------------------------------------------------------
-
 // TODO Day 1B: add a computed property `skillCount` that returns the number
 // of skills — hint: skills.value.length
 const skillCount = computed(() => skills.value.length)
 
 // TODO Day 1B: use onMounted to load saved skills from localStorage
 // (key: 'portfolio-skills') — hint: JSON.parse() to convert back to an array
-// onMounted(() => { ... })
+const skillsKey = 'portfolio-skills'
+onMounted(() => {
+  console.log('mounted')
+  const val = localStorage.getItem(skillsKey)
+  if (val) {
+    skills.value = JSON.parse(val)
+  }
+})
 
 // TODO Day 1B: use watch to save skills to localStorage whenever the list changes
 // hint: JSON.stringify() to convert the array to a string, { deep: true } option
-// watch(skills, (val) => { ... }, { deep: true })
+watch(skills, (val) => {
+  console.log('changed:', val)
+  localStorage.setItem(skillsKey, JSON.stringify(val))
+}, { deep: true })
 
 // ---------------------------------------------------------------------------
 // Bonus
