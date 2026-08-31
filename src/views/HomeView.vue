@@ -6,11 +6,11 @@ import { ref, computed, watch, onMounted } from 'vue'
 // ---------------------------------------------------------------------------
 
 // TODO Day 1A: a) replace with your own name and bio
-const name = 'Your Name'
-const bio = 'A short sentence about who you are and what you do.'
+const name = 'Patricia'
+const bio = 'Senior Software Engineer at Cornelsen'
 
 // TODO Day 1A: b) replace with your own skills
-const skills = ['HTML', 'CSS', 'JavaScript']
+const skills = ['HTML', 'Typescript', 'Java']
 
 const newSkill = ref('')
 
