@@ -358,7 +358,8 @@ Before day 2 wraps up, paste your completed `HomeView.vue` or `ProjectCard.vue` 
 
 ## Demos
 
-[Repository: Demos for Vue Course @ Informatica Feminale 2026](https://github.com/plippC/informatica-vue-2026-demos)
+- [Repository: Demos for Vue Course @ Informatica Feminale 2026](https://github.com/plippC/informatica-vue-2026-demos)
+- [Vue Playground: Composable Demo](https://play.vuejs.org/#eNqNVNtu2zAM/RXCL0kBwy7QYQ9dWmAb+rBhN+yGDTAwqDaTqLUlQ6QTB4H/fZTsOM7WDHuTyEPykIfSPnpZ18mmweg6WlDudM1AyE19mxld1dYxvLcN4WsrF4OGYelsBbMkPTX7FLMXmVmkfRIJlwtjVZeKUW4Ai9OIVIyLdIKI4ogpt2apV8kDWSOM9j4ui3KJ0SW6jzVrayiLriF4vE+Vpd2+DTZ2DcYHe77G/PEJ+wO13pZFnxwSug1m0ehj5VbIvfvuywds5Tw6K1s0paD/4fyMZMvGc+xhrxpTCO0JLrB9E+aqzeor3bWMhg5NeaIe2QV8FslM/bjOtX6ke5U8C3GZ6WSKMuUw6oRJZjiouAeHyxisEZdhLPzxm6n6C3SDrF5Fr1yawv0ORIyNKCWFYzlLHlL3JcKyMbk3glEVEpDwYNhqXgsnKZtFmcE2FB2RB0rzi56+5JcwRkCTq5oavwIFKFNApYxayVnK8xonZX2YECKGFm58M/PLi6NtN7ENBdSUc66ERF34kppprNKTsBt0wLrCxIceSQf8HP0MrvtncOfPQw8AbbJRZYNSOmCSWnL+6F27J1w/B43O8VMlWVhb+wjasA087dYItYDzb2ZGQ2ypl5jvcgkUYHivYXiMyhUSA6QLme1SQEyhqVH3uUhwcytyGQEmqihCS+80ySKim89kIwgrmcgsHgZwEcY82ZbTFC6g/yvLQN4vB+EfGigS/bhxBsLgPHS476GNRd9huf/+ds7/XPtx78YFT9LJ6wir3u/PoYgIdtzVs99Zn1O60GFRNIGSDdlLEui62B8kVTf53YT4L6bv6PxbF8LPk8vkKup+AyRw5WI=)
 
 ---
 
