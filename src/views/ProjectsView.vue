@@ -8,8 +8,8 @@ import { ref } from 'vue';
 
 // TODO Day 2E: import and use your useGithub composable
 // import { useGithub } from '@/composables/useGithub'
-// const githubUsername = 'antfu'
-// const ... = useGithub(githubUsername) ...
+const githubUsername = 'antfu'
+const { repos, loading, error } = useGithub(githubUsername)
 //
 // TODO Day 2F: replace your useGithub composable with @vueuse/core: useFetch composable
 //              see https://vueuse.org/core/useFetch/#usefetch
@@ -23,6 +23,7 @@ import { ref } from 'vue';
 
 // TODO Day 2E: import ProjectCard and use it in the template below
 import ProjectCard from '@/components/ProjectCard.vue'
+import { useGithub } from "@/composables/useGithub.ts";
 
 // Mock Repo for Day 2A
 // TODO Day2E: remove
@@ -47,15 +48,17 @@ const mockRepo = {
     -->
 
     <!-- TODO Day 2E: show a loading state while repos are being fetched -->
+    <div v-if="loading" class="status--loading">Loading ...</div>
 
     <!-- TODO Day 2E: show an error message if the fetch fails -->
+    <div v-if="error" class="status--error">Could not load Github Repositories: {{ error }}</div>
 
     <!-- TODO Day 2A: render a single ProjectCard for the 'mockRepo', remove at Day 2E -->
+    <!--<ProjectCard :repo="mockRepo" />-->
 
     <div class="projects-grid">
-      <ProjectCard :repo="mockRepo" />
       <!-- TODO Day 2E: render a ProjectCard for each repo -->
-      <p class="placeholder">Your GitHub repos will appear here on Day 2E.</p>
+      <ProjectCard v-for="repo in repos" :repo="repo" :key="repo.id" />
     </div>
   </section>
 </template>

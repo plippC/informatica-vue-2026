@@ -17,15 +17,26 @@
 // Bonus Day 2F: replace the manual fetch with VueUse's useFetch() — how much shorter is it?
 
 import { ref } from 'vue'
+import type { Repo } from '@/types'
 
 export function useGithub(username: string) {
-  // TODO Day 2E: replace stubs with your implementation
-  const repos = ref([])
+  const repos = ref<Repo[]>([])
   const loading = ref(false)
   const error = ref<string | null>(null)
 
   async function fetchRepos() {
-    // TODO Day 2E
+    loading.value = true
+    error.value = null
+    try {
+      const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=12`)
+      if (!response.ok) throw new Error(`API error: ${response.status}`)
+      const data = (await response.json()) as Repo[]
+      repos.value = data
+    } catch (err) {
+      error.value = err instanceof Error ? err.message : 'Something went wrong'
+    } finally {
+      loading.value = false
+    }
   }
 
   fetchRepos()
