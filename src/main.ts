@@ -9,14 +9,16 @@ import './assets/main.css'
 import HomeView from './views/HomeView.vue'
 import ProjectsView from './views/ProjectsView.vue'
 import ContactView from './views/ContactView.vue'
+import NotFoundView from './views/NotFoundView.vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     { path: '/', component: HomeView },
     { path: '/projects', component: ProjectsView },
-    { path: '/contact', component: ContactView }
+    { path: '/contact', component: ContactView },
     //  Day 2D: add 404 catch-all route
+    { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFoundView }
   ]
 })
 
