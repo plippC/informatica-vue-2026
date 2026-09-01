@@ -9,10 +9,12 @@ import { ref } from 'vue';
 // TODO Day 2E: import and use your useGithub composable
 // import { useGithub } from '@/composables/useGithub'
 const githubUsername = 'antfu'
-const { repos, loading, error } = useGithub(githubUsername)
+// const { repos, loading, error } = useGithub(githubUsername)
 //
 // TODO Day 2F: replace your useGithub composable with @vueuse/core: useFetch composable
 //              see https://vueuse.org/core/useFetch/#usefetch
+const url = `https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=12`
+const { data: repos, isFetching: loading, error } = useFetch(url).json<Repo[]>();
 
 // TODO Day 2G: import useStorage composable from '@vueuse/core' and store 'username' in local storage
 //              see https://vueuse.org/core/useStorage/#usestorage
@@ -24,6 +26,8 @@ const { repos, loading, error } = useGithub(githubUsername)
 // TODO Day 2E: import ProjectCard and use it in the template below
 import ProjectCard from '@/components/ProjectCard.vue'
 import { useGithub } from "@/composables/useGithub.ts";
+import { useFetch } from '@vueuse/core';
+import type { Repo } from '@/types';
 
 // Mock Repo for Day 2A
 // TODO Day2E: remove
