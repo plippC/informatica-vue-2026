@@ -22,7 +22,7 @@ import { ref } from 'vue';
 // ... useFetch with 'refetch: true'
 
 // TODO Day 2E: import ProjectCard and use it in the template below
-// import ProjectCard from '@/components/ProjectCard.vue'
+import ProjectCard from '@/components/ProjectCard.vue'
 
 // Mock Repo for Day 2A
 // TODO Day2E: remove
@@ -53,6 +53,7 @@ const mockRepo = {
     <!-- TODO Day 2A: render a single ProjectCard for the 'mockRepo', remove at Day 2E -->
 
     <div class="projects-grid">
+      <ProjectCard :repo="mockRepo" />
       <!-- TODO Day 2E: render a ProjectCard for each repo -->
       <p class="placeholder">Your GitHub repos will appear here on Day 2E.</p>
     </div>
