@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 
 
 // ---------------------------------------------------------------------------
@@ -19,7 +19,13 @@ const githubUsername = 'antfu'
 // import { useStorage } from '@vueuse/core'
 const username = useStorage('user-key', githubUsername)
 const url = computed(() => `https://api.github.com/users/${username.value}/repos?sort=updated&per_page=12`)
-const { data: repos, isFetching: loading, error } = useFetch(url, { refetch: true }).json<Repo[]>();
+
+// DAY 2G: Solution fetching on each change of 'username'
+// const { data: repos, isFetching: loading, error } = useFetch(url, { refetch: true }).json<Repo[]>();
+
+// DAY 2G: Better solution to avoid raising rate limits:
+//         Do not fetch data from REST API on each keystroke, but on demand (button-click or keyup.enter)
+const { data: repos, isFetching: loading, error, execute } = useFetch(url, { immediate: false }).json<Repo[]>();
 // const url = computed ...
 // ... useFetch with 'refetch: true'
 
@@ -31,23 +37,29 @@ import type { Repo } from '@/types';
 
 // Mock Repo for Day 2A
 // TODO Day2E: remove
-const mockRepo = {
-  id: 1,
-  name: 'demo-project',
-  description: 'A small demo repo',
-  html_url: 'https://github.com/vuejs-ai/skills',
-  language: 'TypeScript',
-  stargazers_count: 42,
-  topics: ['vue', 'typescript']
-}
+// const mockRepo = {
+//   id: 1,
+//   name: 'demo-project',
+//   description: 'A small demo repo',
+//   html_url: 'https://github.com/vuejs-ai/skills',
+//   language: 'TypeScript',
+//   stargazers_count: 42,
+//   topics: ['vue', 'typescript']
+// }
 </script>
 
 <template>
   <section>
     <h2>Projects</h2>
-    <!-- TODO Day 2G -->
+    <!-- TODO Day 2G: Solution fetching on each input-change of 'username'
     <div style="margin-bottom: 1.5rem; display: flex; gap: 0.5rem; max-width: 360px;">
       <input v-model="username" placeholder="GitHub username" />
+    </div>
+    -->
+    <!-- TODO Day 2G: Better solution to avoid raising rate limits -->
+    <div style="margin-bottom: 1.5rem; display: flex; gap: 0.5rem; max-width: 360px;">
+      <input v-model="username" placeholder="GitHub username" @keyup.enter="execute()"/>
+      <button @click="execute()" type="button">Go</button>
     </div>
 
     <!-- TODO Day 2E: show a loading state while repos are being fetched -->
