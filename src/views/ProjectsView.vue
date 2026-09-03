@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 
 // ---------------------------------------------------------------------------
@@ -13,20 +13,20 @@ const githubUsername = 'antfu'
 //
 // TODO Day 2F: replace your useGithub composable with @vueuse/core: useFetch composable
 //              see https://vueuse.org/core/useFetch/#usefetch
-const url = `https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=12`
-const { data: repos, isFetching: loading, error } = useFetch(url).json<Repo[]>();
 
 // TODO Day 2G: import useStorage composable from '@vueuse/core' and store 'username' in local storage
 //              see https://vueuse.org/core/useStorage/#usestorage
 // import { useStorage } from '@vueuse/core'
-// const username = ...
+const username = useStorage('user-key', githubUsername)
+const url = computed(() => `https://api.github.com/users/${username.value}/repos?sort=updated&per_page=12`)
+const { data: repos, isFetching: loading, error } = useFetch(url, { refetch: true }).json<Repo[]>();
 // const url = computed ...
 // ... useFetch with 'refetch: true'
 
 // TODO Day 2E: import ProjectCard and use it in the template below
 import ProjectCard from '@/components/ProjectCard.vue'
-import { useGithub } from "@/composables/useGithub.ts";
-import { useFetch } from '@vueuse/core';
+// import { useGithub } from "@/composables/useGithub.ts";
+import { useFetch, useStorage } from '@vueuse/core';
 import type { Repo } from '@/types';
 
 // Mock Repo for Day 2A
@@ -45,11 +45,10 @@ const mockRepo = {
 <template>
   <section>
     <h2>Projects</h2>
-    <!-- TODO Day 2G
+    <!-- TODO Day 2G -->
     <div style="margin-bottom: 1.5rem; display: flex; gap: 0.5rem; max-width: 360px;">
       <input v-model="username" placeholder="GitHub username" />
     </div>
-    -->
 
     <!-- TODO Day 2E: show a loading state while repos are being fetched -->
     <div v-if="loading" class="status--loading">Loading ...</div>
